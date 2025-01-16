@@ -1,0 +1,26 @@
+.appBar {
+  padding: 10px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.formGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-bottom: 30px;
+}
+
+.formControlLabel {
+  border: solid 2px rgb(0, 0, 0, 0.6);
+  min-width: 50%;
+}
+
+.contentHeading {
+  margin-bottom: 30px;
+}

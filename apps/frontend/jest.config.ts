@@ -7,4 +7,5 @@ export default {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/apps/frontend',
+  setupFilesAfterEnv: ['./setupTests.ts'],
 };

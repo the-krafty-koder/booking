@@ -6,13 +6,13 @@
       "node",
       "@nx/react/typings/cssmodule.d.ts",
       "@nx/react/typings/image.d.ts",
-      "vite/client"
+      "vite/client",
+      "@testing-library/jest-dom"
     ]
   },
   "exclude": [
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
-    "src/**/*.spec.tsx",
     "src/**/*.test.tsx",
     "src/**/*.spec.js",
     "src/**/*.test.js",
