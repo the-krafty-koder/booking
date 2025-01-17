@@ -39,7 +39,8 @@ Mock data for the appointments are also present. You can view them and create yo
 2. GET /api/antoine/first-availability
 
    Description
-   Get the first availability after a certain date
+   Get the first availability after a certain date, whether same day, next day or
+   soonest day availability is found
 
    URL Params:
    date (required): string - ISO Date string representing date to begin search from
