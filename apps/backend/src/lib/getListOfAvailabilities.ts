@@ -8,10 +8,6 @@ export const listDaysInRange = (
   const start = new Date(startDate);
   const end = new Date(endDate);
 
-  if (isNaN(start.getTime()) || isNaN(end.getTime())) {
-    throw new Error('Invalid date format. Use a valid date string.');
-  }
-
   const days: string[] = [];
   const current = new Date(start);
 

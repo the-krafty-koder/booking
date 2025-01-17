@@ -4,7 +4,7 @@ import { z } from 'zod';
 export const dateRangeSchema = z.object({
   from: z.string().refine((val) => !isNaN(Date.parse(val)), {
     message:
-      "Invalid 'from' date format. Must be an ISO 8601 date '2025-01-14T00:00:00.000Z'.",
+      "Invalid 'from' date format. Must be an ISO 8601 date eg '2025-01-14T00:00:00.000Z'.",
   }),
   to: z.string().refine((val) => !isNaN(Date.parse(val)), {
     message:
