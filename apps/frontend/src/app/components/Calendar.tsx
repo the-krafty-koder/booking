@@ -44,7 +44,7 @@ export const generateRow = (
   entries: [string, string[]][],
   startIndex: number
 ) => {
-  let rowCells: JSX.Element[] = [];
+  const rowCells: JSX.Element[] = [];
   const indexAsString =
     startIndex < 10 ? `0${startIndex}` : startIndex.toString();
   const [realIndex] = indexAsString.split('.').slice(0, 1);
@@ -85,7 +85,7 @@ export const generateRow = (
 
 export const generateRows = (transformedData: Record<string, string[]>) => {
   const entries = Object.entries(transformedData);
-  let rows = [];
+  const rows = [];
   for (let startIndex = 8; startIndex < MAX_PERIODS; startIndex += 0.5) {
     const row = generateRow(entries, startIndex);
     rows.push(row);
@@ -168,7 +168,7 @@ const Calendar = ({ firstAppointmentChecked }: CalendarProps) => {
           hasPreviousAvailabilities: data.hasPreviousAvailabilities,
         },
       });
-    } catch (e) {
+    } catch (_) {
       dispatchAvailabilities({
         type: 'AVAILABILITIES_FETCH_FAILURE',
       });

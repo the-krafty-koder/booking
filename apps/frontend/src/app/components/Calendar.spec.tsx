@@ -1,6 +1,5 @@
 import { screen, render, waitFor, fireEvent } from '@testing-library/react';
 import Calendar, { generateRow } from './Calendar';
-import transformAvailabilitiesData from '../lib/transformAvailabilityData';
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
@@ -24,31 +23,6 @@ global.fetch = jest.fn(() =>
 ) as jest.Mock;
 
 describe('getRows', () => {
-  const weekAvailabilities = [
-    {
-      date: '2025-01-14T23:00:00.000Z',
-      availabilities: [
-        {
-          date: '2025-01-15T08:00:00.000Z',
-          endDate: '2025-01-15T08:30:00.000Z',
-          calendarIds: ['61379ba159d4940022b6c928'],
-          organizationId: '61379ba159d4940022b6c921',
-        },
-      ],
-    },
-    {
-      date: '2025-01-15T23:00:00.000Z',
-      availabilities: [
-        {
-          date: '2025-01-16T09:00:00.000Z',
-          endDate: '2025-01-16T09:30:00.000Z',
-          calendarIds: ['61379ba159d4940022b6c928'],
-          organizationId: '61379ba159d4940022b6c921',
-        },
-      ],
-    },
-  ];
-
   const entries = Object.entries({
     'Wed Jan 15': ['08.00-08.30'],
     'Thu Jan 16': ['09.00-09.30'],
@@ -63,7 +37,7 @@ describe('getRows', () => {
     const startIndex = 8;
 
     const rowCells = generateRow(entries, startIndex);
-    render(<>{rowCells}</>);
+    render(rowCells);
 
     expect(screen.getByText('08.00')).toBeInTheDocument();
   });
@@ -72,7 +46,7 @@ describe('getRows', () => {
     const startIndex = 8; // This will have no match for `09.00-09.30`
 
     const rowCells = generateRow(entries, startIndex);
-    const { getByText } = render(<>{rowCells}</>);
+    const { getByText } = render(rowCells);
 
     // Test for unavailable periods
     expect(getByText('---')).toBeInTheDocument();
@@ -85,7 +59,7 @@ describe('getRows', () => {
     const startIndex = 9.5; // This corresponds to `09.30-10.00`
 
     const rowCells = generateRow(singleEntry, startIndex);
-    const { getByText } = render(<>{rowCells}</>);
+    const { getByText } = render(rowCells);
 
     // Test for correct period when .5 is included in the index
     expect(getByText('09.30')).toBeInTheDocument();

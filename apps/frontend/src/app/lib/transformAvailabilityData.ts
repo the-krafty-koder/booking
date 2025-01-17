@@ -5,7 +5,7 @@ const transformAvailabilitiesData = (
 ) => {
   let result = {};
 
-  weekAvailabilities.map((day) => {
+  weekAvailabilities.forEach((day) => {
     const dayData = day.availabilities.map((availability) => {
       const regex = /T(\d{2}):(\d{2}):\d{2}/;
       const [, hourStart, minuteStart] = availability.date.match(regex)!;
