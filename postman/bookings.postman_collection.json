@@ -104,7 +104,7 @@
 			"response": []
 		},
 		{
-			"name": "Get schedules",
+			"name": "Create schedules",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -122,7 +122,7 @@
 			"response": []
 		},
 		{
-			"name": "Create schedule",
+			"name": "Get schedule",
 			"request": {
 				"method": "GET",
 				"header": [],
