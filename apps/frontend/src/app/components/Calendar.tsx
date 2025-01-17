@@ -17,10 +17,10 @@ import {
 import buildQueryString from '../lib/buildQueryString';
 import transformAvailabilitiesData from '../lib/transformAvailabilityData';
 
-const MAX_PERIODS = 26;
+const MAX_PERIODS = 21;
 const API_URL =
   'https://staging-api.rosa.be/api/patient-booking/availabilities';
-const MAX_DAYS_TO_DISPLAY = 6;
+const MAX_DAYS_TO_DISPLAY = 7;
 
 const StyledTableCellContainer = styled(TableCell)(() => ({
   borderBottom: 'none',
@@ -34,6 +34,9 @@ const StyledAvailableTableCell = styled(Box)(() => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  ':hover': {
+    cursor: 'pointer',
+  },
 }));
 
 const StyledUnAvailableTableCell = styled(Box)(() => ({
@@ -86,7 +89,7 @@ export const generateRow = (
 export const generateRows = (transformedData: Record<string, string[]>) => {
   const entries = Object.entries(transformedData);
   const rows = [];
-  for (let startIndex = 8; startIndex < MAX_PERIODS; startIndex += 0.5) {
+  for (let startIndex = 8; startIndex <= MAX_PERIODS; startIndex += 0.5) {
     const row = generateRow(entries, startIndex);
     rows.push(row);
   }

@@ -1,82 +1,77 @@
-# Booking
+# Booking app
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+## Installation
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
-
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
-
-## Finish your CI setup
-
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/OJ4OW7777t)
-
+Navigate to the root folder and run `>npm install`
 
 ## Run tasks
 
+Start the frontend server with `nx serve frontend`
+Start the backend server with `nx run backend:serve:development`
 To run the dev server for your app, use:
 
-```sh
-npx nx serve frontend
-```
+## API
 
-To create a production bundle:
+I've included a postman collection under the collections folder to get up and
+running with the backend API
 
-```sh
-npx nx build frontend
-```
+## Database
 
-To see all available targets to run for a project, run:
+I've used a serverless postgres db for the data storage. It's schema is suited for a single health professional for now (Antoine) because of time constraints.
 
-```sh
-npx nx show project frontend
-```
+Mock data is present on the db with a 1 week schedule for the days Mon, Tue, Wed and Fri. You can view the current schedule and add to it by querying the api via the /`api/antoine/schedules` endpoint.
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+Mock data for the appointments are also present. You can view them and create your own via the `/api/antoine/appointment` endpoint
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## API Endpoints
 
-## Add new projects
+1. GET /api/antoine/availabilities
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+   Description
+   Get a list of availabilities within a date range
 
-Use the plugin's generator to create new projects.
+   URL Params:
+   from (required): string - ISO Date string representing start of range
+   to (required): string - ISO Date string representing end of range
 
-To generate a new application, use:
+   Example: http://localhost:3000/api/antoine/availabilities?from=2025-01-13T00:00:00.000Z&to=2025-01-17T00:00:00.000Z
 
-```sh
-npx nx g @nx/react:app demo
-```
+2. GET /api/antoine/first-availability
 
-To generate a new library, use:
+   Description
+   Get the first availability after a certain date
 
-```sh
-npx nx g @nx/react:lib mylib
-```
+   URL Params:
+   date (required): string - ISO Date string representing date to begin search from
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+   Example: http://localhost:3000/api/antoine/first-availability?date=2025-01-13T10:30:00.000Z
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+3. GET /api/antoine/schedules
 
+   Description
+   View the current weekly schedule
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+4. GET /api/antoine/appointments
 
-## Install Nx Console
+   Description
+   View current appointments
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+5. POST /api/antoine/schedules
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+   Decription
+   Add to the current schedules
 
-## Useful links
+   Body:
+   day: string - day of the week eg 'Monday'
+   start: string - schedule start time eg '11:00'
+   end: string - schedule end time eg '11:00'
 
-Learn more:
+6. POST /api/antoine/appointments
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+   Description
+   Add to the current appointments
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+   Body:
+   date: string - ISO string representing a date eg "2025-01-16T00:00:00.000Z"
+   start: string - appointment start time eg '11:00'
+   end: string - appointment end time eg '11:00'

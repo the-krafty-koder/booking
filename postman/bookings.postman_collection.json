@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "68bcdf7f-f391-4991-9e31-434017cdf418",
+		"name": "bookings",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "40020358"
+	},
+	"item": [
+		{
+			"name": "Create appointments",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date\": \"2025-01-16T00:00:00.000Z\",\n    \"start\": \"14:00\",\n    \"end\": \"20:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/antoine/appointments"
+			},
+			"response": []
+		},
+		{
+			"name": "Get availabilities",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/antoine/availabilities?from=2025-01-13T00:00:00.000Z&to=2025-01-17T00:00:00.000Z",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"antoine",
+						"availabilities"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2025-01-13T00:00:00.000Z"
+						},
+						{
+							"key": "to",
+							"value": "2025-01-17T00:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get first availability",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/antoine/first-availability?date=2025-01-13T10:30:00.000Z",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"antoine",
+						"first-availability"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2025-01-13T10:30:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get appointments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/api/antoine/appointments"
+			},
+			"response": []
+		},
+		{
+			"name": "Get schedules",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"day\": \"Friday\",\n    \"start\": \"09:30\",\n    \"end\": \"18:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/antoine/schedules"
+			},
+			"response": []
+		},
+		{
+			"name": "Create schedule",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/api/antoine/schedules"
+			},
+			"response": []
+		}
+	]
+}
